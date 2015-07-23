@@ -1,0 +1,24 @@
+{
+  "name": "portlandstreetcarbars",
+  "version": "1.0.0",
+  "description": "first package",
+  "main": "index.js",
+  "scripts": {
+    "test": "Hello World"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ModCult"
+  },
+  "keywords": [
+    "portland",
+    "streetcar",
+    "bars"
+  ],
+  "author": "Tresa Horney",
+  "license": "ModernCultivator",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.2"
+  }
+}
