@@ -1,8 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Maven+Pro:900,700,500);
-
-
 /* general styles to use throughout the site*/
-
 * {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -16,10 +13,8 @@
 	max-width: 100%;
 	margin: 0;
 }
-h1,h2 {width:100%;}
+h1,h2,h3, h4, h5, h6  {width:100%;max-width: 100%;}
 h3, h4, h5, h6 {
-	width: 100%;
-	max-width: 100%;
 	color: rgba(59, 61, 62, 0.9);	
 	font-family: "aw-conqueror-inline",sans-serif;
 	line-height: 125%;
@@ -338,7 +333,7 @@ figure img{
 	display: block;
 	margin: auto;
 	padding-top: 40px;
-	width: 50% !important;
+	width: 25% !important;
 }
 .card .caption:empty {
 	border-top-style: hidden;
