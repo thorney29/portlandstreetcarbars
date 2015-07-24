@@ -1,0 +1,159 @@
+<!doctype html>
+<html ng-app="mapApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Portland's best streetcar bars on stops of the eastside streetcar loop.">
+  <title>BAR LIST || Portland Streetcar Bars Eastside</title> 
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css">
+  <link rel="stylesheet" href="../font/font-styles.css">
+  <link rel="stylesheet" href="../styles/mapAppStyles.css">
+  <script src="../scripts/lib/modernizr-2.5.3.js"></script>
+  <script src="../scripts/modernizr.custom.js"></script>
+
+<link rel="icon" type="image/png" href="http://portlandstreetcarbars.com/favicons/favicon.ico">
+
+<script type="text/javascript" src="//use.typekit.net/kgp0loa.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<!--[if lt IE 9]>
+  <script src="html5shiv.js"></script>
+  <![endif]-->
+<!--[if lt IE 9]>
+  <script src="html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <section class="module parallax parallax-1">
+  <div class="container">
+  <header>
+      <nav id="dl-menu" class="dl-menuwrapper">
+          <button class="dl-trigger">Open Menu</button>
+          <ul class="navMenu dl-menu">
+            <li><a class="hvr-shutter-out-horizontal" href="/">HOME</a></li>
+            <li><a class="hvr-shutter-out-horizontal" id="current" href="#">BAR LIST</a></li>
+            <li><a class="hvr-shutter-out-horizontal" href="/streetcar-bars-map/app">MAP</a></li>
+            <li><a class="hvr-shutter-out-horizontal" href="/streetcar-bars-crawls">CRAWLS</a></li>
+            <li><a class="hvr-shutter-out-horizontal" href="/streetcar-bars-join">CONTACT</a></li>
+          </ul>
+        </nav>
+    <h1 class="header">Portland<br/> <span>Streetcar Bars</span><br/ ></h1><h2 class="eastside-font-effect"><em>Eastside</em></h2>
+      <div class="arrow-box" onMouseOver="show('#arrow')" onMouseOut="hide('#arrow')">
+        <a href="#figureOne"><img id="arrow" src="images/down-arrow.png"></a></div>
+      </header> 
+    </div>
+</section>
+    <div class="clear"></div>
+
+
+ <section class="module content" ng-controller="BarController">
+        <div class="container">
+        <h2 class="mainDark">Streetcar Bar List</h2>
+        <h3>Review the bar list below to find your next stop.</h3>
+
+         <div class="key-container">
+          <h3>Icons Indicate Top 3 Reasons To Go</h3>
+          <div class="key">
+            <span class="c">l</span> = kid-friendly<br>
+            <span class="c">C</span> = bike parking<br>
+            <span class="c">P</span> = outdoor seating<br>
+            <span class="c">T</span> = loud music<br>
+            <span class="c">.</span> = pool table<br>
+            <span class="b">r</span> = open late<br>
+            <span class="b">G</span> = play darts<br>
+          
+            <span class="b">+</span> = beer<br>
+            <span class="a">l</span> = entertainment<br>
+            <span class="a">p</span> = favorite<br>
+            <span class="a">y</span> = wine bar<br>
+            <span class="a">A</span> = stiff drinks<br>
+            <span class="a">D</span> = food served<br>
+            <span class="a">O</span> = local ingredients<br>
+           </div>
+      </div>
+      <div class="table-boxes">
+        <article class="list-group-item"  ng-repeat="bar in bars track by $index | orderBy : 'name'"> 
+       <!--  <colgroup>
+        <col id="barname">
+        <col id="bartype">
+        <col id="whygo">
+        <col id="line">
+        </colgroup> -->
+          <tr>
+         <!--  <th>Street Car Bars</th>
+          <th>Bar Type</th>
+          <th>Attractions</th>
+        </tr>
+ -->                    
+          <a href="{{bar.gsx$url.$t}}">
+          <div class="img-wrap"> 
+          <img id="bar-image" class="bar-image" src="{{bar.gsx$image.$t}}" />
+          <!-- End Image Gallery -->
+        </div>   
+        <h3 class="box-title">{{bar.name}}</h3>      
+          <td class="">
+            <span class="table-icons a">{{bar.gsx$a.$t}}</span>
+            <span class="table-icons b">{{bar.gsx$b.$t}}</span>
+            <span class="table-icons c">{{bar.gsx$c.$t}}</span>
+          </a>
+    </article> 
+     </div>
+      </section>
+           <div class="clear"></div>
+   <section class="module parallax parallax-3">
+        <div class="container">
+      <footer>
+        <div class="one">
+       <h6> <a href="mailto:tresa.e@gmail.com?Subject = I'd like to know more"> Email the Portland Streetcar Bars</a><br /> Site Mantained by <a href="http://moderncultivator.com">Modern Cultivator</a></h6>
+       <div class="icon-one">
+        <img class="image-icons" src="../../images/green_drink_mug.png" alt="mug of love icon">
+        </div>
+      </div>
+      </footer>
+    </div>
+    </section>
+
+  <!-- end wrapper -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!--<script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCdOS0Bctn6co9d2ZaecN-LNrU5yi3eoXQ&sensor=true">
+    </script>
+    -->
+
+    <script type="text/javascript" src="../scripts/lib/angular.js"></script>
+    <script type="text/javascript" src="../scripts/app.js"></script>
+    
+    <!--<script type="text/javascript" src="../scripts/map.js"></script>-->
+   
+<script>
+$(function(){
+    var url = window.location.href; 
+    $(".navMenu a").each(function() {
+        if(url == (this.href)) { 
+            $(this).closest("a").addClass("current");
+        }
+    });
+});
+(function(){
+    var parallax = document.querySelectorAll(".parallax"),
+      speed = 0.35;
+  window.onscroll = function(){
+      [].slice.call(parallax).forEach(function(el,i){
+        var windowYOffset = window.pageYOffset,
+          elBackgrounPos = "0 " + (windowYOffset * speed) + "px";  
+        el.style.backgroundPosition = elBackgrounPos;
+    });
+  };
+})();
+</script>
+     <script src="../scripts/jquery.dlmenu.js"></script>
+    <script>
+      $(function() {
+        $( '#dl-menu' ).dlmenu({
+          animationClasses : { classin : 'dl-animate-in-3', classout : 'dl-animate-out-3' }
+        });
+      });
+    </script>
+       
+</body>
+</html>

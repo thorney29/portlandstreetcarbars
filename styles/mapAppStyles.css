@@ -85,11 +85,8 @@ a:active  {
 #clearPanel.button  {margin-left:10px;}
 /* navMenu styles to use throughout the site*/
 header {
-		background: rgba(255,255,255,.8);
-
+	background: rgba(255,255,255,.8);
 }
-
-
 /*scroll arrow */
 .arrow-box {
 	width: 200px;
@@ -253,12 +250,13 @@ footer .icon {
 /* ---------------------------------------
    START CARDS
 ---------------------------------------------------*/
-#figureOne
-{
+#figureOne,  #figureTwo, section {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
- 
+    
+    flex-direction: row;
+
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -267,11 +265,7 @@ figure   {
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
-    }
-
-figure{
-	display: inline-block;
-	height: 550px;
+        flex-direction: column;
 	position: relative;
 	width: 25%;
 	min-width: 128px;
@@ -294,8 +288,6 @@ figure{
 figure:first-of-type {
 	margin-left: 10%;
 }
-
-
 .feature a:link, 
 .feature a:visited {
 	background-color: #000;
@@ -323,6 +315,7 @@ figcaption {
 	font-size: 2.2em;
 	color: #444;
 	line-height: 125%;
+	flex-grow:1;
 }
 .mainDark {
 		background:rgb(9,128,140);
@@ -333,7 +326,7 @@ figure img{
 	display: block;
 	margin: auto;
 	padding-top: 40px;
-	width: 25% !important;
+	width: 50% !important;
 }
 .card .caption:empty {
 	border-top-style: hidden;
