@@ -1,6 +1,7 @@
 'use strict';
 /* Controllers */
-var barListControllers = angular.module('barListControllers', ['ui.bootstrap']);
+var barListControllers = angular.module('barListControllers', ['ui.bootstrap', 'ngRoute']);
+
 barListControllers.controller('BarListCtrl', ['$scope', 'Data',
   function($scope, Data) {
     $scope.datas = Data.query();
@@ -23,21 +24,24 @@ barListControllers.controller('BarListCtrl', ['$scope', 'Data',
         });
       }
     });
-    //$("span.chip").justtext(); //return "A quick brown fox" 
-    //map options navigation
+    // bar filters 
+    // New Search
     $('li .newsearch').on('click', function() {
       $('input#barQuery').val('');
       $('.opened').toggleClass('opened');
       $('div.form-inline').toggleClass('opened');
     })
+    // Get Query
     $('li .getquery').on('click', function() {
       $('.opened').toggleClass('opened');
       $('div.querySort').toggleClass('opened');
     })
+    // Sort
     $('li .sort').on('click', function() {
       $('.opened').toggleClass('opened');
       $('div.sorting').toggleClass('opened');
     })
+    // Refresh - clear search
     $scope.refresh = function() {
       $scope.query = '';
       $scope.category_list = [];
@@ -55,6 +59,7 @@ barListControllers.controller('BarListCtrl', ['$scope', 'Data',
       }, 600);
       return false;
     })
+    // Determine device type to display correct map on apple, android, computers
     $scope.navigate = function(lat, lng, name) {
       var ua = navigator.userAgent.toLowerCase();
 
@@ -83,26 +88,13 @@ barListControllers.controller('BarListCtrl', ['$scope', 'Data',
     };
   }
 ]);
-// barListControllers.controller('BarDetailCtrl', ['$scope', '$routeParams', 'Data',
-//   function($scope, $routeParams, Data) {
-//     $scope.data = Data.get({datamarkerId: $routeParams.datamarkerId}, function(data) {
-//       $scope.mainImageUrl = data.images[0];
-//     });
-//     $scope.setImage = function(image) {
-//       $scope.mainImageUrl = image;
-//     };
-//   }]);
+// Display featured bars  -- currently wine and breweries
 barListControllers.controller('RecommendedListView', ['$scope', 'Data',
   function($scope, Data) {
     $scope.datas = Data.query();
     $scope.features = function(datas) {
       return datas.features;
     };
-    //  $(".chip").each(function(){
-    //      $(this).contents().filter(function(){ 
-    //       return this.nodeType == 3; 
-    //     })[0].nodeValue = ""
-    //   }); 
     $scope.wine = function(datas) {
       return datas.type === "Wine Bar";
     };

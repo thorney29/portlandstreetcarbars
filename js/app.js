@@ -11,6 +11,12 @@ var barMapApp = angular.module('barMapApp', [
 ]);
  barMapApp.config(['$routeProvider', "$locationProvider",
   function($routeProvider, $locationProvider) {
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false,
+        rewriteLinks: true
+    });
+
     $routeProvider.
       when('/get-directions', {
         templateUrl: 'partials/bars-list.html',
@@ -40,12 +46,8 @@ var barMapApp = angular.module('barMapApp', [
         templateUrl: 'partials/home.html',
         controller: 'HomeCtrl'
       });
-      // when('/bars/:datamarkerId', {
-      //   templateUrl: 'partials/bar-detail.php',
-      //   controller: 'BarDetailCtrl'
-      // }).
-        // use the HTML5 History API
-        $locationProvider.html5Mode(true);
+
+      // $locationProvider.html5Mode(true);
     
   }]);
  
