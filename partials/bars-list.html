@@ -1,0 +1,349 @@
+
+<!-- <script src="/js/materialize.js"></script>
+<script src="/js/init.js"></script>
+<script src="https://cdn.jsdelivr.net/scrollreveal.js/3.1.4/scrollreveal.min.js"></script>
+<script src="/js/scripts.js"></script>  
+    -->
+<div class="container top">
+  <div class="section">
+  <!--   Icon Section   -->
+  <div class="row">
+    <div class="col s12">
+      <div class="icon-block">
+      <h2 class="center lime-text"><i class="material-icons directions">directions</i></h2>
+
+        <h1>Get Directions</h1>
+        <p>
+        	Get transit directions to your next destination. Use the icons in the toolbar below to search the bar list. Click on the magnifying class to search for locations by name, click on the grid to sort by alphabet or bar type, click on the two-box filter icon to filter bars by bar type and click on the reset icon to reset your search.  
+        	</p>
+        	<p>	
+        	Click on the "Get Directions" button to get directions from your current location or click "Show on Google Maps" button to view venue on Google Maps.
+        </p>
+        <div  class="fb-like"  data-share="true"  data-width="450"  data-show-faces="true" style="padding-bottom: 10px;"></div>
+
+      </div><!-- e-iconblock -->
+    </div><!-- e-cols12m4 -->   
+    <div class="col s12">
+       <nav>
+          <div class="nav-wrapper">
+             <ul class="right">
+              <li><div class="newsearch"><i class="material-icons">search</i></div></li>
+              <li><div class="getquery"><i class="material-icons">view_module</i></div></li>
+              <li><div class="sort"><i class="material-icons">dns</i></div></li>    
+              <li><div ng-click="refresh()"><i class="material-icons">refresh</i></div></li>
+              <li><div ng-click="close()"><i class="material-icons">close</i></div></li>
+
+              </ul>
+          </div><!-- e-navwrapper -->
+      </nav>
+       <!-- <div id="top"> -->
+      <div class="row">
+        <div class="form-inline">
+         <div class="col s12">
+             <h4>Search By Keyword:</h4>  
+             <input id="barQuery" placeholder="Search by bar name to narrow results below" ng-model="query">
+             <h4>Select By Name:</h4> 
+             <select id="query" ng-model="query">
+                        <option value="">Select a bar</option>
+                        <option class="" ng-repeat="data in datas" value="{{data.name}}">
+               	           {{data.name}}
+                        </option>
+              </select>
+           </div>  
+         </div>
+        </div>  
+        <div class="sorting">
+          <h4>Filter by:</h4>
+          <div class="col s12">
+             <div id="filters" class="sortcat-flex-container">
+              <div class="filterblock">
+              <input id="check1" type="checkbox" name="check" value="Bar" class="category">
+              <label for="check1">Bar</label>
+              </div>
+              <div class="filterblock">
+              <input id="check2" type="checkbox" name="check" value="Dive Bar" class="category">
+              <label for="check2">Dive Bar</label>
+              </div>
+              <div class="filterblock">
+              <input id="check3" type="checkbox" name="check" value="Cidery" class="category">
+              <label for="check3">Cidery</label>
+              </div>
+              <div class="filterblock">
+              <input id="check4" type="checkbox" name="check" value="Restaurant" class="category">
+              <label for="check4">Restaurant</label>
+              </div>
+              <div class="filterblock">
+              <input id="check5" type="checkbox" name="check" value="Lounge" class="category">
+              <label for="check5">Lounge</label>
+              </div>
+              <div class="filterblock">
+              <input id="check6" type="checkbox" name="check" value="Sports" class="category">
+              <label for="check6">Sports</label>
+              </div>  
+              <div class="filterblock">
+              <input id="check7" type="checkbox" name="check" value="Dance" class="category">
+              <label for="check7">Dance</label>
+              </div>   
+              <div class="filterblock">
+              <input id="check8" type="checkbox" name="check" value="Tasting Room" class="category">
+              <label for="check8">Tasting Room</label>
+              </div> 
+              <div class="filterblock">
+              <input id="check9" type="checkbox" name="check" value="Theme" class="category">
+              <label for="check9">Theme</label>
+              </div> 
+              <div class="filterblock">
+              <input id="check10" type="checkbox" name="check" value="Deli" class="category">
+              <label for="check10">Deli</label>
+              </div> 
+              <div class="filterblock">
+              <input id="check11" type="checkbox" name="check" value="Bowling Alley" class="category">
+              <label for="check11">Bowling Alley</label>
+              </div> 
+              <div class="filterblock">
+              <input id="check12" type="checkbox" name="check" value="Table Tennis Parlor" class="category">
+              <label for="check12">Table Tennis Parlor</label>
+              </div> 
+              <div class="filterblock">
+              <input id="check13" type="checkbox" name="check" value="Brew Pub" class="category">
+              <label for="check13">Brew Pub</label>
+              </div> 
+            </div>
+         </div>
+        </div>
+        <div class="querySort">
+          <h4>Sort by:</h4>
+          <div class="input-field">
+            <select ng-model="orderProp">
+               <option value="name">Alphabetical</option>
+               <option value="type">Type</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="col s12 mainsection">
+        <!--Body content-->
+
+        <ul class="bars">
+          <li ng-repeat="data in datas | filter:query  || undefined | orderBy:orderProp" class="thumbnail bar-listing resultblock" data-tag="{{data.type}}">
+          <!--  <a href="#/bars/{{data.markerId}}" class="thumb"></a>--><img ng-src="{{data.image}}" alt="{{data.name}}">
+            <h2 class="name" ><!-- <a href="#/bars/{{data.markerId}}"> -->{{data.name}}<!-- </a> --></h2>
+            
+            <p ng-bind-html="data.features  | to_trusted"></p>
+            <p><strong>TYPE:<span class="type"> {{data.type}}</span></strong></p>
+            <p class="address">{{data.address}}</p>
+            <div class="col s12">
+
+            <button value="{{data.lat}} {{data.lng}}" id="directions" class="btn dir">GET DIRECTIONS</button>
+            <br/>
+            <!-- <a class="btn btn-primary map" target="_blank" href="https://www.google.com/maps/place/?key=AIzaSyCXOqIYw5VQH9kCQwj3buLfVV3vHvKfxsM&q={{data.name}}" role="button">VIEW ON GOOGLE MAPS</a> -->
+            <button class="btn map"  ng-click="navigate(data.lat,data.lng, data.name)">SHOW ON GOOGLE MAPS</button>
+
+          </div>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+ </div>  
+<section class="map-container"> 
+  <div id="right-panel">
+     <div class="markerStates">
+      <button id="showMarkers" class="waves-effect waves-light btn" type="button" value="">Show All</button>
+      <button id="hideMarkers" class="waves-effect waves-light btn" type="button" value="">Hide All</button>
+      <button id="back-to-top" class="waves-effect waves-light btn newsearch" ng-click="reset();">New Search</button>
+     </div>
+   </div>         
+   <div id="map"></div> 
+</section>  
+<script>
+    function initMap() {
+        if (navigator.geolocation) { //Checks if browser supports geolocation
+           // Create an array of styles.
+           var styles = [
+            {
+              stylers: [
+                { hue: "#00ffe6" },
+                { saturation: -20 }
+              ]
+            },{
+              featureType: "road",
+              elementType: "geometry",
+              stylers: [
+                { lightness: 100 },
+                { visibility: "simplified" }
+              ]
+            },{
+              featureType: "road",
+              elementType: "labels",
+              stylers: [
+                { visibility: "off" }
+              ]
+            }
+           ];
+           // Create a new StyledMapType object, passing it the array of styles,
+           // as well as the name to be displayed on the map type control.
+           var styledMap = new google.maps.StyledMapType(styles,{name: "Styled Map"});
+
+           navigator.geolocation.getCurrentPosition(function (position) { //This gets the
+             var latitude = position.coords.latitude;                    //users current
+             var longitude = position.coords.longitude;                 //location
+             var coords = new google.maps.LatLng(latitude, longitude); //Creates variable for map coordinates
+             
+             // create new service and display  
+             var directionsService = new google.maps.DirectionsService();
+             var directionsDisplay = new google.maps.DirectionsRenderer();
+             //Sets map options 
+             var mapOptions = {
+               zoom: 15,  //Sets zoom level (0-21)
+               scrollwheel: false,
+               panControl: true,
+               center: coords, //zoom in on users location
+               mapTypeControl: false, //allows you to select map type eg. map or satellite
+               navigationControlOptions: styles,
+               mapTypeId: google.maps.MapTypeId.ROADMAP//sets type of map Options:ROADMAP, SATELLITE, HYBRID, TERRIAN
+             };
+             // create the new map
+             var map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 11,
+                center: coords,
+                scrollwheel: true, // Prevent users to start zooming the map when scrolling down the page
+                panControl: true,
+                draggable:true
+              });
+              // set up the directions and map
+              directionsDisplay.setMap(map);
+              directionsDisplay.setPanel(document.getElementById('right-panel'));
+              map.mapTypes.set('map_style', styledMap);
+              map.setMapTypeId('map_style');
+            
+
+              $( "button.dir" ).bind( 'touchstart click', function() {
+                    value = {};
+                    var value= this.value;
+                    clearRoute(directionsService, directionsDisplay);
+                    calculateAndDisplayRoute(directionsService, directionsDisplay, value);
+                    function scrollWin(){
+                      $('html,body').animate({
+                          scrollTop: $("#right-panel").offset().top
+                      }, 600);
+                    }
+                    scrollWin();
+              }); // click get directions to get directions
+              $('.reset').bind('touchstart click',function() {
+                    clearRoute(directionsService, directionsDisplay);
+              })
+              function clearRoute(directionsService,directionsDisplay) {
+                  directionsService.route({
+                    origin: coords,
+                    destination: coords,
+                    travelMode: google.maps.TravelMode.TRANSIT
+                  }, function(response, status,end) {
+                    if (status === google.maps.DirectionsStatus.OK) {
+                      directionsDisplay.setDirections(null);
+                    } else {
+                      alert('To view map, adjust your phone\'s location settings.')
+                      window.alert('Directions request failed due to ' + status);
+                    }
+                  });
+              }; // clear the directions route
+              function calculateAndDisplayRoute(directionsService, directionsDisplay, value) {
+                    directionsService.route({
+                      origin: coords,
+                      destination: value,
+                      travelMode: google.maps.TravelMode.TRANSIT
+                    }, function(response, status,end) {
+                    if (status === google.maps.DirectionsStatus.OK) {
+                      directionsDisplay.setDirections(response);           
+                    } else {
+                      window.alert('Directions request failed due to ' + status);
+                    }
+                    })
+              } // get and set the directions 
+
+              // Create the marker array to store the markers you'll create
+              var markers = [];
+              var marker = "";
+             
+              var createMarker = function(){  
+                  $.getJSON("/bars/bars.json", function(json1) {
+ 
+                      $.each(json1, function(key, data) {
+                          var latLng = new google.maps.LatLng(data.lat, data.lng); 
+                          //Creating a marker and putting it on the map
+                            
+                          marker = new google.maps.Marker({
+                              map: map,
+                              position: latLng, 
+                              animation: google.maps.Animation.DROP
+                          });
+                        
+                          var contentString = '<div class="card"><strong>' +data.name;
+                          contentString += '</strong><br><img src="' + data.image + '"><br><a target="_blank" href="' + data.url;
+                          contentString +='">website</a><br>' + data.address + '<br><br><button value="' + data.lat + '' +data.lng;
+                          contentString += '"id="marker">GET DIRECTIONS HERE</button></div>';
+                        
+                          var infoWindow = new google.maps.InfoWindow({
+                                content: contentString
+                          });
+                         
+
+                          google.maps.event.addListener(marker, 'click', function(contentString){ 
+                              infoWindow.open(map, this);
+                              $('button#marker').click(function() {
+                                        value = {};
+                                        var value= this.value;
+                                        clearRoute(directionsService, directionsDisplay);
+                                        calculateAndDisplayRoute(directionsService, directionsDisplay, latLng);                       
+                               });
+                          });
+
+                          markers.push(marker); 
+                          
+                      });  
+                  });       
+              };//end createMarker
+            
+              $('button#showMarkers').click(function(){
+                    function addMarkerWithTimeout(position, timeout) {
+                        window.setTimeout(function() {
+                          markers.push(new google.maps.Marker({
+                            position: position,
+                            map: map,
+                            animation: google.maps.Animation.DROP
+                          }));
+                        }, timeout);
+                      }
+                      function drop() {
+                        createMarker();
+                          for (var i =0; i < markers.length; i++) {
+                            setTimeout(function() {
+                              addMarkerWithTimeout();
+                            }, i * 500);
+                          }
+                      }
+                      drop();
+              }); // click show all to show all makers 
+              $('button#hideMarkers').click(function(){
+                    if (markers) {
+                        for (i=0; i < markers.length; i++) {
+                            markers[i].setMap(null);
+                        }
+                    markers.length = 0;
+                    }
+              }); // click hide all to hide all markers
+           }) //end getcurrentpostition
+        } //end if geolocation
+        else {
+          alert("Maps will not work if your locations settings are turned off. Please check your location settings and refresh the page.");
+        }
+    } //end functioninitMap
+   $().UItoTop({ easingType: 'easeOutQuart' });
+ 
+
+  </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXOqIYw5VQH9kCQwj3buLfVV3vHvKfxsM&amp;callback=initMap" async="" defer="">
+  </script> 
+
+

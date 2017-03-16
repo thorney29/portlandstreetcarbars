@@ -1,0 +1,14 @@
+
+RewriteEngine on
+
+RewriteOptions inherit
+RewriteCond %{HTTP_HOST} ^www\.portlandstreetcarbars\.com$
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^get\-directions$ "https\:\/\/portlandstreetcarbars\.com\/get\-directions" [R=301,L]
+RewriteCond %{HTTP_HOST} ^portlandstreetcarbars\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.portlandstreetcarbars\.com$
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^portlandstreetcarbars\.com\/get\-directions$ "https\:\/\/portlandstreetcarbars\.com\/get\-directions" [R=301,L]
+
