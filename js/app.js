@@ -31,8 +31,8 @@ var barMapApp = angular.module('barMapApp', [
         controller: 'RecommendedListView'
       }).
       when('/contact', {
-        templateUrl: 'partials/contact.html',
-        controller: 'ContactCtrl'
+        templateUrl: 'partials/contact.php',
+        controller: 'ContactController'
       }).
       when('/toasts', {
         templateUrl: 'partials/toasts.html',
