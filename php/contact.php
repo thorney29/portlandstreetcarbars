@@ -7,15 +7,15 @@ $txt_txtBusinessAddress = $_POST['business_address'];
 $txt_txtDiscovery = $_POST['discovery'];
 $txt_txtMessage = $_POST['message'];
  
-$subject = "Inquiry from portlandstreetcarbars"
+$subject = "Inquiry from portlandstreetcarbars";
 $mail_to = 'moderncultivator@gmail.com';
 $mail_from = $txt_txtEmail;
 
 $body_message = $subject;
-// $body_message .= 'E-mail: '.$txt_txtEmail."\n";
-// $body_message .= 'Business: '.$txt_txtBusiness."\n";
-// $body_message .=  'Discovery:'.$txt_txtDiscovery."\n";
-// $body_message .= 'Message: '.$txt_txtMessage."\n";
+$body_message .= 'E-mail: '.$txt_txtEmail."\n";
+$body_message .= 'Business: '.$txt_txtBusiness."\n";
+$body_message .=  'Discovery:'.$txt_txtDiscovery."\n";
+$body_message .= 'Message: '.$txt_txtMessage."\n";
 
 $headers = 'From: '.$txt_txtName. ' <'.$txt_txtEmail .">\r\n";
 $headers .= 'Reply-To: '.$txt_txtEmail."\r\n";
