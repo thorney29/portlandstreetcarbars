@@ -14,8 +14,9 @@
 
         <h1>Get Directions</h1>
         <p>
-        	Get transit directions to your next destination. Use the icons in the toolbar below to search the bar list. Click on the magnifying class to search for locations by name, click on the grid to sort by alphabet or bar type, click on the two-box filter icon to filter bars by bar type and click on the reset icon to reset your search.  
+        	Get transit directions to your next destination. Use the icons in the toolbar below to search the bar list: search by name, sort by alphabet or bar type, filter by bar type and reset your search to clear.  
         	</p>
+          <p>Click the heart (<i class="fa fa-heart-o"></i>) to save your favorites on your device.</p>
         	<p>	
         	Click on the "Get Directions" button to get directions from your current location or click "Show on Google Maps" button to view venue on Google Maps.
         </p>
@@ -27,11 +28,11 @@
        <nav>
           <div class="nav-wrapper">
              <ul class="right">
-              <li><div class="newsearch"><i class="material-icons">search</i></div></li>
-              <li><div class="getquery"><i class="material-icons">view_module</i></div></li>
-              <li><div class="sort"><i class="material-icons">dns</i></div></li>    
-              <li><div ng-click="refresh()"><i class="material-icons">refresh</i></div></li>
-              <li><div ng-click="close()"><i class="material-icons">close</i></div></li>
+              <li><div class="newsearch"><i class="material-icons" title="Search by Name">search</i></div></li>
+              <li><div class="getquery"><i class="material-icons" title="Sort List">view_module</i></div></li>
+              <li><div class="sort"><i class="material-icons" title="Filter by Type">dns</i></div></li>    
+              <li><div ng-click="refresh()"><i class="material-icons" title="New Search">refresh</i></div></li>
+              <li><div ng-click="close()"><i class="material-icons" title="Close Search Bar">close</i></div></li>
 
               </ul>
           </div><!-- e-navwrapper -->
@@ -127,17 +128,19 @@
 
         <ul class="bars">
           <li ng-repeat="data in datas | filter:query  || undefined | orderBy:orderProp" class="thumbnail bar-listing resultblock" data-tag="{{data.type}}">
-          <!--  <a href="#/bars/{{data.markerId}}" class="thumb"></a>--><img ng-src="{{data.image}}" alt="{{data.name}}">
-            <h2 class="name" ><!-- <a href="#/bars/{{data.markerId}}"> -->{{data.name}}<!-- </a> --></h2>
-            
+          <span id="itemID-{{data.markerId}}">
+            <img ng-src="{{data.image}}" alt="{{data.name}}">
+            <h2 class="name"> {{data.name}} </h2>
+              <album-directive album-id="$index"></album-directive>            
+              <!-- <div class="favorite"><i class="fave material-icons" title="">star_border</i></div> -->
             <p ng-bind-html="data.features  | to_trusted"></p>
             <p><strong>TYPE:<span class="type"> {{data.type}}</span></strong></p>
             <p class="address">{{data.address}}</p>
-            <div class="col s12">
+          </span>
+          <div class="col s12">
 
             <button value="{{data.lat}} {{data.lng}}" id="directions" class="btn dir">GET DIRECTIONS</button>
             <br/>
-            <!-- <a class="btn btn-primary map" target="_blank" href="https://www.google.com/maps/place/?key=AIzaSyCXOqIYw5VQH9kCQwj3buLfVV3vHvKfxsM&q={{data.name}}" role="button">VIEW ON GOOGLE MAPS</a> -->
             <button class="btn map"  ng-click="navigate(data.lat,data.lng, data.name)">SHOW ON GOOGLE MAPS</button>
 
           </div>
@@ -233,7 +236,7 @@
               }); // click get directions to get directions
               $('.reset').bind('touchstart click',function() {
                     clearRoute(directionsService, directionsDisplay);
-              })
+              });
               function clearRoute(directionsService,directionsDisplay) {
                   directionsService.route({
                     origin: coords,
@@ -304,8 +307,50 @@
                       });  
                   });       
               };//end createMarker
-            
-              $('button#showMarkers').click(function(){
+              
+              // var favorites = [];    
+              // // register click event listener
+              // $('.favorite').on('click', function( ) {
+              //   //get id of object to be created
+              //   var itemID = $(this).parent().attr('id');
+              //   //get content of object to be created
+              //   var itemContent = $(this).parent().html();
+              //   //get star state
+              //   var itemStarState = $(this).find('i').html(); 
+              //   // create star variables to swap
+              //   var star = 'star';
+              //   var star_border = 'star_border';
+ 
+              //   var testObject = { 
+              //     'itemID': itemID, 
+              //     'itemStarState': itemStarState, 
+              //     'itemContent': itemContent 
+              //   };
+              //   if(itemStarState == 'star_border'){
+              //     $(this).find('i').html(star); 
+              //     testObject.itemStarState = star;
+              //   }
+              //   if(itemStarState == 'star') {
+              //     $(this).find('i').html(star_border); 
+              //     testObject.itemStarState = star_border;
+              //   }
+              //   favorites.push(testObject);
+              //   // Put the object into storage
+              //   localStorage.setItem('favorites', JSON.stringify(favorites));
+                
+              //   // Retrieve the object from storage
+              //   var retrievedObject = localStorage.getItem('testObject');
+
+              //   console.log('retrievedObject: ', JSON.parse(retrievedObject));
+                
+                
+              //   console.log(favorites);
+              //   console.log(itemID);
+              //   console.log(itemStarState);
+
+              // });
+                 
+               $('button#showMarkers').click(function(){
                     function addMarkerWithTimeout(position, timeout) {
                         window.setTimeout(function() {
                           markers.push(new google.maps.Marker({
@@ -340,10 +385,9 @@
         }
     } //end functioninitMap
    $().UItoTop({ easingType: 'easeOutQuart' });
- 
-
   </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXOqIYw5VQH9kCQwj3buLfVV3vHvKfxsM&amp;callback=initMap" async="" defer="">
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXOqIYw5VQH9kCQwj3buLfVV3vHvKfxsM&amp;callback=initMap" async="" defer="">
   </script> 
 
 

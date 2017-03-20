@@ -796,5 +796,47 @@
     "lng": -122.664279,
     "features": "<span class='chip'>restaurant<i class='material-icons'>restaurant</i></span><span class='chip'>drinks<i class='material-icons'>local_bar</i></span>",
     "saved": ""
+  },
+  {
+    "markerId": 57,
+    "name": "Lantern Lounge",
+    "url": "http://www.lanternpdx.com",
+    "type": "Lounge",
+    "address": "726 SE Grand Ave",
+    "city": "Portland",
+    "state": "OR",
+    "image": "/images/bars/lantern-lounge.jpg",
+    "lat": 45.517505, 
+    "lng": -122.66041,
+    "features": "<span class='chip'>restaurant<i class='material-icons'>restaurant</i></span><span class='chip'>drinks<i class='material-icons'>local_bar</i></span>",
+    "saved": ""
+  },
+  {
+    "markerId": 58,
+    "name": "Bit House Saloon",
+    "url": "http://www.bithousesaloon.com",
+    "type": "Saloon",
+    "address": "727 SE Grand Ave",
+    "city": "Portland",
+    "state": "OR",
+    "image": "/images/bars/bit-house-saloon.jpg",
+    "lat": 45.517516, 
+    "lng": -122.661061,
+    "features": "<span class='chip'>restaurant<i class='material-icons'>restaurant</i></span><span class='chip'>drinks<i class='material-icons'>local_bar</i></span>",
+    "saved": ""
+  },
+  {
+    "markerId": 59,
+    "name": "Coopers Hall",
+    "url": "http://www.coopershall.com",
+    "type": "Hall",
+    "address": "404 SE 6th Ave,",
+    "city": "Portland",
+    "state": "OR",
+    "image": "/images/bars/coopers-hall.jpg",
+    "lat": 45.519839, 
+    "lng": -122.659396,
+    "features": "<span class='chip'>restaurant<i class='material-icons'>restaurant</i></span><span class='chip'>drinks<i class='material-icons'>local_bar</i></span>",
+    "saved": ""
   }
 ]

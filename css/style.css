@@ -335,7 +335,18 @@ div.shot span:last-child:before {
     margin: 10px;
 } 
 /* buttons */
-
+.bars [id*="itemID"] button  {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    border:none;
+    /*background: rgba(9,128,140,.9);*/
+    background: white;
+}
+.bars [id*="itemID"] i.fa.fa-heart  { 
+  color: red;
+}
 button.dir,
 button#marker {
   border-radius: 2px; 
@@ -457,13 +468,12 @@ section.map-container {
 
 .mdl-layout__header-row>* {margin:auto;}
 
-@media only (max-width:1090px) {
-  button.map {font-size: 12px;}
- }
+
 @media only screen and (max-width:1024px) {
   .mdl-layout__header {display:block !important;}
 }
  @media only screen and (max-width : 992px) {
+ 
   h1 span.background-heading {
    letter-spacing: 10px;
   }
@@ -577,4 +587,4 @@ section.map-container {
     -ms-transition: all 0.1s linear;
     transition: all 0.1s linear;
 }
-
+ 
