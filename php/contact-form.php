@@ -1,7 +1,5 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-require_once '../phpmailer/PHPMailerAutoload.php';
+require_once 'phpmailer/PHPMailerAutoload.php';
 
 if (isset($_POST['inputName']) && isset($_POST['inputEmail']) && isset($_POST['inputSubject']) && isset($_POST['inputMessage'])) {
 
@@ -17,7 +15,7 @@ if (isset($_POST['inputName']) && isset($_POST['inputEmail']) && isset($_POST['i
 
     $mail->From = $_POST['inputEmail'];
     $mail->FromName = $_POST['inputName'];
-    $mail->AddAddress('moderncultivator@gmail.com'); //recipient 
+    $mail->AddAddress('tresa.e@gmail.com'); //recipient
     $mail->Subject = $_POST['inputSubject'];
     $mail->Body = "Name: " . $_POST['inputName'] . "\r\n\r\nMessage: " . stripslashes($_POST['inputMessage']);
 

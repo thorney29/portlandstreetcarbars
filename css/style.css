@@ -341,11 +341,14 @@ div.shot span:last-child:before {
     border-radius: 50%;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
     border:none;
-    /*background: rgba(9,128,140,.9);*/
+    
     background: white;
 }
 .bars [id*="itemID"] i.fa.fa-heart  { 
   color: red;
+}
+.bars [id*="itemID"] i.fa.fa-check-square-o {
+  color: rgba(9,128,140,.9);
 }
 button.dir,
 button#marker {
@@ -467,8 +470,11 @@ section.map-container {
 #contact-form select {margin-top: 50px;}
 
 .mdl-layout__header-row>* {margin:auto;}
-
-
+@media only screen and (max-width:1100px) {
+  .btn, .btn-large, .btn-flat {
+    line-height: 16px;
+  }
+}
 @media only screen and (max-width:1024px) {
   .mdl-layout__header {display:block !important;}
 }

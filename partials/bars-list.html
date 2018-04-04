@@ -16,9 +16,9 @@
         <p>
         	Get transit directions to your next destination. Use the icons in the toolbar below to search the bar list: search by name, sort by alphabet or bar type, filter by bar type and reset your search to clear.  
         	</p>
-          <p>Click the heart (<i class="fa fa-heart-o"></i>) to save your favorites on your device.</p>
+          <p>Click the heart icon (<i class="fa fa-heart-o"></i>) to save/or unsave your favorites; check the box icon (<i class="fa fa-square-o"></i>) to keep track of where you've been. <em>No need to login - this info will be saved on your favorite device.</em></p>
         	<p>	
-        	Click on the "Get Directions" button to get directions from your current location or click "Show on Google Maps" button to view venue on Google Maps.
+        	Click on the "Get Directions" button to get transit directions from your current location or click "Show on Google Maps" button to view venue on Google Maps.
         </p>
         <div  class="fb-like"  data-share="true"  data-width="450"  data-show-faces="true" style="padding-bottom: 10px;"></div>
 
@@ -28,9 +28,9 @@
        <nav>
           <div class="nav-wrapper">
              <ul class="right">
-              <li><div class="newsearch"><i class="material-icons" title="Search by Name">search</i></div></li>
-              <li><div class="getquery"><i class="material-icons" title="Sort List">view_module</i></div></li>
-              <li><div class="sort"><i class="material-icons" title="Filter by Type">dns</i></div></li>    
+              <li><div class="newsearch"><i class="material-icons" title="Search Bars by Name">search</i></div></li>
+              <li><div class="getquery"><i class="material-icons" title="Sort Bar List">view_module</i></div></li>
+              <li><div class="sort"><i class="material-icons" title="Filter by Bar Type">dns</i></div></li>    
               <li><div ng-click="refresh()"><i class="material-icons" title="New Search">refresh</i></div></li>
               <li><div ng-click="close()"><i class="material-icons" title="Close Search Bar">close</i></div></li>
 
@@ -131,8 +131,8 @@
           <span id="itemID-{{data.markerId}}">
             <img ng-src="{{data.image}}" alt="{{data.name}}">
             <h2 class="name"> {{data.name}} </h2>
-              <album-directive album-id="$index"></album-directive>            
-              <!-- <div class="favorite"><i class="fave material-icons" title="">star_border</i></div> -->
+              <visited-directive visited-id="$index+11"></visited-directive>            
+              <album-directive album-id="$index"></album-directive>
             <p ng-bind-html="data.features  | to_trusted"></p>
             <p><strong>TYPE:<span class="type"> {{data.type}}</span></strong></p>
             <p class="address">{{data.address}}</p>
@@ -158,7 +158,7 @@
       <button id="back-to-top" class="waves-effect waves-light btn newsearch" ng-click="reset();">New Search</button>
      </div>
    </div>         
-   <div id="map"></div> 
+   <div id="map" title="Portland streetcar bar map"></div> 
 </section>  
 <script>
     function initMap() {
@@ -308,47 +308,6 @@
                   });       
               };//end createMarker
               
-              // var favorites = [];    
-              // // register click event listener
-              // $('.favorite').on('click', function( ) {
-              //   //get id of object to be created
-              //   var itemID = $(this).parent().attr('id');
-              //   //get content of object to be created
-              //   var itemContent = $(this).parent().html();
-              //   //get star state
-              //   var itemStarState = $(this).find('i').html(); 
-              //   // create star variables to swap
-              //   var star = 'star';
-              //   var star_border = 'star_border';
- 
-              //   var testObject = { 
-              //     'itemID': itemID, 
-              //     'itemStarState': itemStarState, 
-              //     'itemContent': itemContent 
-              //   };
-              //   if(itemStarState == 'star_border'){
-              //     $(this).find('i').html(star); 
-              //     testObject.itemStarState = star;
-              //   }
-              //   if(itemStarState == 'star') {
-              //     $(this).find('i').html(star_border); 
-              //     testObject.itemStarState = star_border;
-              //   }
-              //   favorites.push(testObject);
-              //   // Put the object into storage
-              //   localStorage.setItem('favorites', JSON.stringify(favorites));
-                
-              //   // Retrieve the object from storage
-              //   var retrievedObject = localStorage.getItem('testObject');
-
-              //   console.log('retrievedObject: ', JSON.parse(retrievedObject));
-                
-                
-              //   console.log(favorites);
-              //   console.log(itemID);
-              //   console.log(itemStarState);
-
-              // });
                  
                $('button#showMarkers').click(function(){
                     function addMarkerWithTimeout(position, timeout) {
